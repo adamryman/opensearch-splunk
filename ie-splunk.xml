@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:ie="http://schemas.microsoft.com/Search/2008/">
+	<ShortName>Splunk</ShortName>
+		<Image width="16" height="16">data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABPElEQVQ4jWNMXWb+n4ECwESJZqwGsDKxUWZAvuMEhkC9TAZuNn7yDPj26wuDp3Y8Q7vfOoYAvQwGbjY+vAYwGwfLNCALnH60m+Hh+xsMkvyKDKZyrgz2qsEM7CycDE/e32b4/fcnhgGM+GJBS8KcwVs7kUFFVJ/hx5+vDPturmbYfWMZw7ffn3G7ABm8/vKU4dj9LQy3Xp1nUBczYjCSdWB49eUJw6P3N3GHATpQEtZhcNeMYRDnlWP4/fcXw4dvr1HkWXBpVBHRY/DWSWbQkjBj+PPvF8OB22sYdlxbzPD++yv8BqiI6jP46aQyqIsbM/z594th/63VDDuuL2b48P01ulLsBoQbFTJI8ikw7Lu1imHH9cUMH7+/wetFDAOO3N3EcOHJQYaPP97i1YjTgIN31hGlEQaon5lIBQDoaGeGptU5jQAAAABJRU5ErkJggg==</Image>
+
+	<Url type="text/html" method="get" template="http://localhost:8000/en-US/app/search/search?q={searchTerms}" />
+</OpenSearchDescription>
