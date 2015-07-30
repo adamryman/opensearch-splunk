@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "express": "^4.13.1",
+    "node-uuid": "^1.4.3",
     "swig": "^1.4.2"
   },
   "devDependencies": {},

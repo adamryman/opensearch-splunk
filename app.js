@@ -4,6 +4,7 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 var querystring = require('querystring');
+var uuid = require('node-uuid');
 var express = require('express');
 var app = express();
 
@@ -27,12 +28,12 @@ var testRendering = function () {
 }
 
 // TODO: Render, using browser to find template xml file
-var renderBrowser = function (params) {
+var renderBrowser = function (params, callback) {
     var file = __dirname + '/opensearch-template/' + params.browser + '-splunk.xml';
     var output = swig.renderFile(file, {
         host: params.host,
-        port: paramas.port,
-        https: paramas.https
+        port: params.port,
+        https: params.https
     });
 
     callback(output);
@@ -40,11 +41,7 @@ var renderBrowser = function (params) {
 
 var renderAndSave = function (params, callback) {
     renderBrowser(params, function(output) {
-        var file = '';
-        params.forEach( function (item) {
-            // GUID?
-            file = file + item + '-'
-        });
+        var file = uuid.v1();
         file = file + 'splunk.xml';
         var filepath = '/opensearch-generated/' + file;
 
@@ -83,6 +80,7 @@ app.post('/post', function (req, res) {
     req.on('end', function() {
         console.log(fullBody);
         var params = querystring.parse(fullBody);
+        console.log(params);
        	renderAndSave(params, function (filepath) {
         	res.render('addsearchprovider', {filepath: filepath, javascriptAdd: true})
 		});
