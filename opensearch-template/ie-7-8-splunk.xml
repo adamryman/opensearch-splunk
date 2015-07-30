@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:ie="http://schemas.microsoft.com/Search/2008/">
-	<ShortName>Splunk</ShortName>
+		<ShortName>{{ shortname }</ShortName>
 	<Image width="16" height="16">http://splunk.com/content/dam/splunk2/images/icons/favicons/favicon-16x16.png</Image>
-	<Url type="text/html" method="get" template="http{% if https == true %}s{% endif %}://{{ host }}{% if port %}:{{ port }}{% endif %}/app/search/search?q={% raw %}{searchTerms}{% endraw %}" />
+	<Url type="text/html" method="get" template="http{% if https == true %}s{% endif %}://{{ host }}{% if port != false %}:{{ port }}{% endif %}/app/search/search?q={% raw %}{searchTerms}{% endraw %}" />
 </OpenSearchDescription>

@@ -7,19 +7,21 @@
 </head>
 <body>
 	<form action="/post" method="post">
+		<h1>search endpoint name</h1>
+		<input name="shortname" placeholder="splunk-1 default: Splunk" />
 		<h1>host</h1>
-	<input name="host" placeholder="localhost" />
+	 	<input name="host" placeholder="localhost (default: localhost" />
 		<h1>port</h1>
-	<input name="port" placeholder="8000"/>
+		<input name="port" placeholder="8000 (default: none)"/>
 		<h1>https</h1>
-		True<input name="https" type="radio" value="true" />
-		False<input name="https" type="radio" value="false" checked/>
+			True<input name="https" type="radio" value="true" />
+			False<input name="https" type="radio" value="false" checked/>
 		<h1>browser</h1>
-		Chrome<input name="browser" type="radio" value="chrome" /><br>
-		Firefox<input name="browser" type="radio" value="firefox" /><br>
-		ie 7 or 8<input name="browser" type="radio" value="ie-7-8" checked/><br>
-		ie 9, 10, or 11<input name="browser" type="radio" value="ie-9-10-11" /><br>
-		Microsoft Edge<input name="browser" type="radio" value="edge" /><br>
+			Chrome<input name="browser" type="radio" value="chrome" checked/><br>
+			Firefox<input name="browser" type="radio" value="firefox" /><br>
+			ie 7 or 8<input name="browser" type="radio" value="ie-7-8" /><br>
+			ie 9, 10, or 11<input name="browser" type="radio" value="ie-9-10-11" /><br>
+			Microsoft Edge<input name="browser" type="radio" value="edge" /><br>
 		<div class="button">
 				<button type="submit">Add Splunk as a Search Provider</button>
 		</div>

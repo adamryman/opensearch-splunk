@@ -31,9 +31,10 @@ var testRendering = function () {
 var renderBrowser = function (params, callback) {
     var file = __dirname + '/opensearch-template/' + params.browser + '-splunk.xml';
     var output = swig.renderFile(file, {
-        host: params.host,
-        port: params.port,
-        https: params.https
+        host: params.host ? params.host : 'localhost',
+        port: params.port ? params.port : false,
+        https: params.https,
+        shortname: params.shortname ? params.shortname : 'Splunk'
     });
 
     callback(output);
