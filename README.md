@@ -22,6 +22,10 @@ By default this is just for the search app.
 
 ## Open Search Documentation
 
+### Open Search
+
+- [http://www.opensearch.org/Specifications/OpenSearch/1.1#OpenSearch_description_document](http://www.opensearch.org/Specifications/OpenSearch/1.1#OpenSearch_description_documen)
+
 ### Chrome
 - [https://www.chromium.org/tab-to-search](https://www.chromium.org/tab-to-search)
 
