@@ -2,5 +2,5 @@
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:ie="http://schemas.microsoft.com/Search/2008/">
 	<ShortName>Splunk</ShortName>
 	<Image width="16" height="16">http://splunk.com/content/dam/splunk2/images/icons/favicons/favicon-16x16.png</Image>
-	<Url type="text/html" method="get" template="http://localhost:8000/en-US/app/search/search?q={searchTerms}" />
+	<Url type="text/html" method="get" template="http{% if https %}s{% endif %}://{{ host }}{% if port %}:{{ port }}{% endif %}/app/search/search?q={% raw %}{searchTerms}{% endraw %}" />
 </OpenSearchDescription>
