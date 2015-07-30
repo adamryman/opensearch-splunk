@@ -1,0 +1,10 @@
+
+# Vim files
+*.swp
+*.swo
+
+# Node
+node_modules/
+
+# Markdown Render
+__render/

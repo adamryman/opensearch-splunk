@@ -1,0 +1,28 @@
+{
+  "name": "opensearch-splunk",
+  "version": "0.0.1",
+  "description": "Add splunk as a search provider",
+  "main": "app.js",
+  "dependencies": {
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/adamryman.com/opensearch-splunk.git"
+  },
+  "keywords": [
+    "splunk",
+    "search",
+    "opensearch"
+  ],
+  "author": "Adam Ryman",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/adamryman.com/opensearch-splunk/issues"
+  },
+  "homepage": "https://github.com/adamryman.com/opensearch-splunk#readme"
+}
