@@ -27,39 +27,37 @@ var testRendering = function () {
 }
 
 // TODO: Render, using browser to find template xml file
-var renderBrowser = function (host, port, https, browser) {
-    var file = __dirname + '/opensearch-template/' + browser + '-splunk.xml';
+var renderBrowser = function (params) {
+    var file = __dirname + '/opensearch-template/' + params.browser + '-splunk.xml';
     var output = swig.renderFile(file, {
-        host: host,
-        port: port,
-        https: https
+        host: params.host,
+        port: paramas.port,
+        https: paramas.https
     });
 
-    return output;
+    callback(output);
 }
 
-var renderAndSave = function (host, port, https, browser, callback) {
-    var output = renderBrowser(host, port, https, browser);
-    var file = '';
-    [host, port, https, browser].forEach( function (item) {
-        file = file + item + '-'
+var renderAndSave = function (params, callback) {
+    renderBrowser(params, function(output) {
+        var file = '';
+        params.forEach( function (item) {
+            // GUID?
+            file = file + item + '-'
+        });
+        file = file + 'splunk.xml';
+        var filepath = '/opensearch-generated/' + file;
+
+        fs.writeFile(__dirname + '/opensearch-generated/' + file,
+                    output,
+                    function (err) {
+                        if (err) throw err;
+                        console.log(file + ' saved!');
+                        callback(filepath);
+                    }
+        );
     });
-    file = file + 'splunk.xml';
-    var filepath = '/opensearch-generated/' + file;
-
-    fs.writeFile(__dirname + '/opensearch-generated/' + file,
-                renderBrowser(host, port, https, browser),
-                function (err) {
-                    if (err) throw err;
-                    console.log(file + ' saved!');
-					callback(filepath);
-                }
-    );
 }
-
-
-//testRendering();
-
 
 var renderDisplay = function (filepath, javascriptAdd) {
     var output = swig.renderFile(__dirname + '/template/addsearchprovider.html', {
@@ -85,7 +83,7 @@ app.post('/post', function (req, res) {
     req.on('end', function() {
         console.log(fullBody);
         var params = querystring.parse(fullBody);
-       	renderAndSave(params.host, params.port, params.https, params.browser, function (filepath) {
+       	renderAndSave(params, function (filepath) {
         	res.render('addsearchprovider', {filepath: filepath, javascriptAdd: true})
 		});
     });
