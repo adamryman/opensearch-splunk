@@ -8,6 +8,9 @@
 </head>
 <body>
 
+
+		<a href="#" onclick="window.external.AddSearchProvider('{{ filepath }}');" >Click here is the search provider was not added automatically</a>
+
 		<script>
 		{% if javascriptAdd == true %}
 			window.onload = window.external.AddSearchProvider("{{ filepath }}");
