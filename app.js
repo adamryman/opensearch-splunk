@@ -44,7 +44,7 @@ var renderAndSave = function (host, port, https, browser, callback) {
     [host, port, https, browser].forEach( function (item) {
         file = file + item + '-'
     });
-    file = file + 'spunk.xml';
+    file = file + 'splunk.xml';
     var filepath = './opensearch-generated/' + file;
 
     fs.writeFile('./opensearch-generated/' + file,
