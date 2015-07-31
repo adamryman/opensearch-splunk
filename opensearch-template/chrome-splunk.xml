@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<OpenSearchDesciption xmlns="http://a9.com/-/spec/opensearch/1.1/">
+<SearchPlugin xmlns="http://a9.com/-/spec/opensearch/1.1/">
 	<ShortName>Splunk</ShortName>
 	<Description>Search Splunk from your search bar!</Description>
 	<Image width="16" height="16">http://splunk.com/content/dam/splunk2/images/icons/favicons/favicon-16x16.png</Image>
