@@ -9,9 +9,9 @@
 <body>
 
 		<script>
-			<% if javascriptAdd %>
-			window.external.addSearchProvider("{{ filepath }}");
-			<% endif %>
+		{% if javascriptAdd == true %}
+			window.onload = window.external.AddSearchProvider("{{ filepath }}");
+		{% endif %}
 		</script>
 </body>
 

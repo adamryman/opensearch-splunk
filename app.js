@@ -4,15 +4,16 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 var querystring = require('querystring');
+var express = require('express');
+var app = express();
+
+app.engine('html', swig.renderFile);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/template');
+
+app.use('/opensearch-generated', express.static('opensearch-generated'));
 
 var broswers = [ 'firefox', 'chrome', 'ie-7-8', 'ie-9-10-11', 'edge' ]
-
-var output = swig.renderFile('./opensearch-template/chrome-splunk.xml', {
-        host: 'localhost',
-        port: '8000'
-});
-
-//console.log(output);
 
 
 // TODO: Loop through all browsers and render open search provider xml
@@ -94,4 +95,26 @@ var server = http.createServer(function (request, response) {
     // response.end();
 });
 
-server.listen('9000');
+app.get('/', function (req, res) {
+    console.log("test");
+    res.render('index', {filepath: "test", javascriptAdd: false });
+});
+
+app.post('/post', function (req, res) {
+    var fullBody = '';
+
+    req.on('data', function (data ) {
+        fullBody += data.toString();
+    });
+
+    req.on('end', function() {
+        console.log(fullBody);
+        var params = querystring.parse(fullBody);
+        var filepath = renderAndSave(params.host, params.port, params.https, params.browser);
+        res.render('addsearchprovider', {filepath: filepath, javascriptAdd: true})
+    });
+});
+
+var server = app.listen(3000, function () {
+
+});
