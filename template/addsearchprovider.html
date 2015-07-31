@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title></title>
+		<link type="application/opensearchdescription+xml" rel="search"
+			  href="{{ filepath }}" />
+</head>
+<body>
+
+		<script>
+			<% if javascriptAdd %>
+			window.external.addSearchProvider("{{ filepath }}");
+			<% endif %>
+		</script>
+</body>
+
+</html>
+
