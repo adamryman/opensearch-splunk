@@ -28,7 +28,7 @@ var testRendering = function () {
 
 // TODO: Render, using browser to find template xml file
 var renderBrowser = function (host, port, https, browser) {
-    var file = './opensearch-template/' + browser + '-splunk.xml';
+    var file = __dirname + '/opensearch-template/' + browser + '-splunk.xml';
     var output = swig.renderFile(file, {
         host: host,
         port: port,
@@ -45,9 +45,9 @@ var renderAndSave = function (host, port, https, browser, callback) {
         file = file + item + '-'
     });
     file = file + 'splunk.xml';
-    var filepath = './opensearch-generated/' + file;
+    var filepath = '/opensearch-generated/' + file;
 
-    fs.writeFile('./opensearch-generated/' + file,
+    fs.writeFile(__dirname + '/opensearch-generated/' + file,
                 renderBrowser(host, port, https, browser),
                 function (err) {
                     if (err) throw err;
@@ -62,7 +62,7 @@ var renderAndSave = function (host, port, https, browser, callback) {
 
 
 var renderDisplay = function (filepath, javascriptAdd) {
-    var output = swig.renderFile('./template/addsearchprovider.html', {
+    var output = swig.renderFile(__dirname + '/template/addsearchprovider.html', {
         filepath: filepath,
         javascriptAdd: javascriptAdd
     });
