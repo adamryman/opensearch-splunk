@@ -38,7 +38,7 @@ var renderBrowser = function (host, port, https, browser) {
     return output;
 }
 
-var renderAndSave = function (host, port, https, browser) {
+var renderAndSave = function (host, port, https, browser, callback) {
     var output = renderBrowser(host, port, https, browser);
     var file = '';
     [host, port, https, browser].forEach( function (item) {
@@ -52,10 +52,9 @@ var renderAndSave = function (host, port, https, browser) {
                 function (err) {
                     if (err) throw err;
                     console.log(file + ' saved!');
+					callback(filepath);
                 }
     );
-
-    return filepath;
 }
 
 
@@ -70,30 +69,6 @@ var renderDisplay = function (filepath, javascriptAdd) {
 
     return output;
 }
-
-var server = http.createServer(function (request, response) {
-
-    var fullBody = '';
-
-    request.on('data', function (data ) {
-        fullBody += data.toString();
-    });
-
-    request.on('end', function() {
-        console.log(fullBody);
-        var params = querystring.parse(fullBody);
-        var filepath = renderAndSave(params.host, params.port, params.https, params.browser);
-        response.writeHeader(200, {"Content-Type": "text/html"});
-        response.write(renderDisplay(filepath));
-        response.end();
-    });
-    // var params = request.body;
-    // var filepath = renderAndSave(params.host, params.port, params.https, params.browser);
-    // TODO: return a response with a link to a page with the xml file in a link tag and/or window.external.addSearchProvider()
-    // response.writeHeader(200, {"Content-Type": "text/html"});
-    // response.write(renderDisplay(filepath));
-    // response.end();
-});
 
 app.get('/', function (req, res) {
     console.log("test");
@@ -110,8 +85,9 @@ app.post('/post', function (req, res) {
     req.on('end', function() {
         console.log(fullBody);
         var params = querystring.parse(fullBody);
-        var filepath = renderAndSave(params.host, params.port, params.https, params.browser);
-        res.render('addsearchprovider', {filepath: filepath, javascriptAdd: true})
+       	renderAndSave(params.host, params.port, params.https, params.browser, function (filepath) {
+        	res.render('addsearchprovider', {filepath: filepath, javascriptAdd: true})
+		});
     });
 });
 
